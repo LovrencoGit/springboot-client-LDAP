@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:ldap="http://www.springframework.org/schema/ldap"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/ldap http://www.springframework.org/schema/ldap/spring-ldap.xsd">
+    
+    <!--    
+    <bean id="contextSource" class="org.springframework.ldap.core.support.LdapContextSource">
+        <property name="url" value="ldap://10.0.10.10:389" />
+        <property name="base" value="dc=certimetergroup,dc=com" />
+        <property name="userName" value="cn=ldap_test,ou=technical,dc=certimetergroup,dc=com" />
+        <property name="password" value="VrjET&amp;3Vnj" />
+    </bean>
+    
+    <bean id="ldapTemplate" class="org.springframework.ldap.core.LdapTemplate">
+        <constructor-arg ref="contextSource" />
+    </bean>
+    -->
+    
+    <ldap:context-source
+          url="ldap://10.0.10.10:389"
+          base="dc=certimetergroup,dc=com"
+          username="cn=ldap_test,ou=technical,dc=certimetergroup,dc=com"
+          password="VrjET&amp;3Vnj" />
+
+   <ldap:ldap-template id="ldapTemplate" />
+    
+    
+    <bean id="ldapContact" class="it.certimeter.dao.DAOldapContact">
+        <property name="ldapTemplate" ref="ldapTemplate" />
+    </bean>
+</beans>
